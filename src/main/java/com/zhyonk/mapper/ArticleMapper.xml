@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhyonk.dao.ArticleDao">
+	<select id="getAllArticle"  resultType="com.zhyonk.entity.Article">
+		select * from article
+	</select>
+	
+	<select id="getArticleById"  resultType="com.zhyonk.entity.Article">
+		select * from article where article_id = #{id}
+	</select>
+	
+	<select id="getCarousel"  resultType="com.zhyonk.entity.Carousel">
+		select * from carousel
+	</select>
+</mapper>

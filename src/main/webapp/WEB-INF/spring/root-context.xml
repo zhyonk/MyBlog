@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- <bean id="visitorFilter" class="com.zhyonk.filter.VisitorsFilter"> 
+		<property name="visitorService"> <ref bean="visitorServiceImpl"></ref> </property> 
+		</bean> -->
+	<bean id="visitorService" class="com.zhyonk.serviceImpl.VisitorServiceImpl">
+	</bean>
+	<!-- dataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/blog" />
+		<property name="username" value="root" />
+		<property name="password" value="331520" />
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+
+	<!-- 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 -->
+	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Md5CredentialsMatcher"></bean>
+	<!-- 缓存管理 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"></bean>
+	<!-- 使用Shiro自带的JdbcRealm类 指定密码匹配所需要用到的加密对象 指定存储用户、角色、权限许可的数据源及相关查询语句 -->
+	<bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+		<property name="permissionsLookupEnabled" value="true"></property>
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="authenticationQuery"
+			value="SELECT password FROM t_user WHERE username = ?"></property>
+		<property name="userRolesQuery"
+			value="SELECT role_name from blog_user_role left join sec_role using(role_id) left join sec_user using(user_id) WHERE user_name = ?"></property>
+		<property name="permissionsQuery"
+			value="SELECT permission_name FROM blog_role_permission left join sec_role using(role_id) left join sec_permission using(permission_id) WHERE role_name = ?"></property>
+	</bean>
+	
+	
+	<bean id="userRealm" class="com.zhyonk.realm.UserRealm">
+	</bean>
+
+
+	<!-- Shiro安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	<property name="realms">
+            <list>
+                <ref bean="userRealm"/>
+                <ref bean="jdbcRealm"/>
+            </list>
+     </property>
+	<property name="cacheManager" ref="cacheManager"></property>
+	</bean>
+
+	<!-- Shiro主过滤器本身功能十分强大，其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 Web应用中，Shiro可控制的Web请求必须经过Shiro主过滤器的拦截，Shiro对基于Spring的Web应用提供了完美的支持 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- Shiro的核心安全接口，这个属性是必须的 -->
+		<property name="securityManager" ref="securityManager"></property>
+		<!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
+		<property name="loginUrl" value="/security/login"></property>
+		<!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) -->
+		<!-- <property name="successUrl" value="/" ></property> -->
+		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
+		<property name="unauthorizedUrl" value="/"></property>
+		<property name="filterChainDefinitions">
+			<value>
+				/security/*=anon
+				/tag=authc
+			</value>
+		</property>
+	</bean>
+
+	<!-- 开启Shiro的注解(如@RequiresRoles，@RequiresPermissions)，需借助SpringAOP扫描使用Shiro注解的类， 
+		并在必要时进行安全逻辑验证 -->
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean> 
+		<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"> 
+		<property name="securityManager" ref="securityManager"></property> </bean> -->
+
+	<!-- 采用注释的方式配置bean -->
+	<context:annotation-config />
+	<!-- 扫描 MyBatis SQL -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/zhyonk/mapper/*.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zhyonk.dao" />
+	</bean>
+	<bean name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 配置事务管理 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<!-- 第一个 “*” 代表所有类，第二个“*” 代表所有方法，“。。”代表任意参数 -->
+		<aop:pointcut expression="execution(* com.zhyonk.service.*.*(..))"
+			id="pointcut" />
+		<!-- 把事务控制在 service 层 -->
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="pointcut" />
+	</aop:config>
+
+
+</beans>

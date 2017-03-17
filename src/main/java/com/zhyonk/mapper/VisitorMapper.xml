@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhyonk.dao.VisitorDao">
+	<select id="addVisitorLog" >
+		insert into visitor_log(ip,country,provice,city,time,borwser_Type,platformType,link) values(#{ip},#{country},#{provice},#{city},#{timestamp},#{browserType},#{platformType},#{requestURL})
+	</select>
+	
+	<select id="getVisitorData"  resultType="com.zhyonk.entity.Visitor">
+		select * from visitor_log
+	</select>
+
+	<select id="getVisitorCount"  resultType="com.zhyonk.entity.VisitorCount">
+		select borwser_Type,count(borwser_Type) as count from visitor_log group by borwser_Type;
+	</select>
+
+
+	<select id="getProviceCount"  resultType="com.zhyonk.entity.ProviceCount">
+		select provice,count(provice) as count from visitor_log group by provice;
+	</select>
+
+	<select id="getVisitorIpCount"  resultType="com.zhyonk.entity.VisitorIpCount">
+		select provice as ip,count(provice) as count from visitor_log group by provice desc limit 3;
+	</select>
+</mapper>
