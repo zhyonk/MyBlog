@@ -62,7 +62,7 @@ public class HomeController {
             request.setAttribute("msg", "success");
             return "/admin/index"; 
         } catch (AuthenticationException e) {  
-            return "//login";  
+            return "/login";  
         } 
 	}
 	

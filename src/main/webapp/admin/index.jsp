@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/admin/";
+	String basePath1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
 <!DOCTYPE html>
 
 <html>
@@ -12,9 +22,9 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="format-detection" content="telephone=no">
 
-		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
-		<link rel="stylesheet" href="css/global.css" media="all">
-		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="<%=basePath%>css/global.css" media="all">
+		<link rel="stylesheet" href="<%=basePath%>plugins/font-awesome/css/font-awesome.min.css">
 
 	</head>
 
@@ -23,8 +33,8 @@
 			<div class="layui-header header header-demo">
 				<div class="layui-main">
 					<div class="admin-login-box">
-						<a class="logo" style="left: 0;" href="http://beginner.zhengjinfan.cn/demo/beginner_admin/">
-							<span style="font-size: 22px;">BeginnerAdmin</span>
+						<a class="logo" style="left: 0;" href="http://localhost:8080/MyBlog/login">
+							<span style="font-size: 22px;">博客后台管理</span>
 						</a>
 						<div class="admin-side-toggle">
 							<i class="fa fa-bars" aria-hidden="true"></i>
@@ -42,7 +52,7 @@
 						</li>
 						<li class="layui-nav-item">
 							<a href="javascript:;" class="admin-header-user">
-								<img src="images/0.jpg" />
+								<img src="<%=basePath%>images/0.jpg" />
 								<span>beginner</span>
 							</a>
 							<dl class="layui-nav-child">
@@ -58,14 +68,14 @@
 									</a>
 								</dd>
 								<dd>
-									<a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+									<a href="<%=basePath%>login.jsp"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
 								</dd>
 							</dl>
 						</li>
 					</ul>
 					<ul class="layui-nav admin-header-item-mobile">
 						<li class="layui-nav-item">
-							<a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+							<a href="<%=basePath%>login.jsp"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
 						</li>
 					</ul>
 				</div>
@@ -83,15 +93,15 @@
 					</ul>
 					<div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
 						<div class="layui-tab-item layui-show">
-							<iframe src="main.html"></iframe>
+							<iframe src="<%=basePath%>main.jsp"></iframe>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="layui-footer footer footer-demo" id="admin-footer">
 				<div class="layui-main">
-					<p>2016 &copy;
-						<a href="http://www.mycodes.net/" target="_blank">源码之家</a> LGPL license
+					<p>2017 &copy;
+						<a href="#" target="_blank">zhyonk</a> LGPL license
 					</p>
 				</div>
 			</div>
@@ -104,18 +114,18 @@
 			<script type="text/template" id="lock-temp">
 				<div class="admin-header-lock" id="lock-box">
 					<div class="admin-header-lock-img">
-						<img src="images/0.jpg"/>
+						<img src="<%=basePath%>images/0.jpg"/>
 					</div>
-					<div class="admin-header-lock-name" id="lockUserName">beginner</div>
+					<div class="admin-header-lock-name" id="lockUserName">zhyonk</div>
 					<input type="text" class="admin-header-lock-input" value="输入密码解锁.." name="lockPwd" id="lockPwd" />
 					<button class="layui-btn layui-btn-small" id="unlock">解锁</button>
 				</div>
 			</script>
 			<!--锁屏模板 end -->
 			
-			<script type="text/javascript" src="plugins/layui/layui.js"></script>
-			<script type="text/javascript" src="datas/nav.js"></script>
-			<script src="js/index.js"></script>
+			<script type="text/javascript" src="<%=basePath%>plugins/layui/layui.js"></script>
+			<script type="text/javascript" src="<%=basePath%>datas/nav.js"></script>
+			<script src="<%=basePath%>js/index.js"></script>
 			<script>
 				layui.use('layer', function() {
 					var $ = layui.jquery,
@@ -126,7 +136,7 @@
 							title: 'YouTube',
 							maxmin: true,
 							type: 2,
-							content: 'video.html',
+							content: '<%=basePath%>video.jsp',
 							area: ['800px', '500px']
 						});
 					});

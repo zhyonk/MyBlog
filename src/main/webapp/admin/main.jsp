@@ -1,11 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/admin/";
+	String basePath1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
-		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="<%=basePath%>css/main.css" />
 	</head>
 
 	<body>
@@ -49,7 +58,7 @@
 						<div class="layui-field-box">
 							<p>1、layui版本更新到1.0.7</p>
 							<p>2、添加layout三级菜单布局页面
-								<a href="http://beginner.zhengjinfan.cn/demo/beginner_admin/layout.html" style="color: #1AA094;" target="_blank">点击这里查看演示</a>
+								<a href="http://beginner.zhengjinfan.cn/demo/beginner_admin/layout.jsp" style="color: #1AA094;" target="_blank">点击这里查看演示</a>
 							</p>
 						</div>
 					</fieldset>
