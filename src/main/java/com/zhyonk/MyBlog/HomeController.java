@@ -45,7 +45,7 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm(Locale locale, Model model) {
 		model.addAttribute("user",new User());
-		return "/page/login";
+		return "/admin/login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -55,12 +55,12 @@ public class HomeController {
 		
         try {  
             if(bindingResult.hasErrors()){  
-                return "/page/login";  
+                return "/admin/login";  
             }  
             //使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！  
             SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));  
             request.setAttribute("msg", "success");
-            return "/page/index"; 
+            return "/admin/index"; 
         } catch (AuthenticationException e) {  
             return "//login";  
         } 

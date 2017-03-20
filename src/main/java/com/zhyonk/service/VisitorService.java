@@ -36,5 +36,4 @@ public interface VisitorService {
 	 * @return
 	 */
 	List<ProviceCount> getProviceCount();
-
 }

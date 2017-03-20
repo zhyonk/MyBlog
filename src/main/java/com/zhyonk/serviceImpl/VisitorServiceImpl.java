@@ -1,3 +1,4 @@
+
 package com.zhyonk.serviceImpl;
 
 
@@ -61,5 +62,4 @@ public class VisitorServiceImpl implements VisitorService {
 		List<ProviceCount> list = visitorDao.getProviceCount();
 		return list;
 	}
-
 }

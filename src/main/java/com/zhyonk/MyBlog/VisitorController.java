@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSONArray;
-import com.zhyonk.entity.Article;
 import com.zhyonk.entity.ProviceCount;
 import com.zhyonk.entity.Visitor;
 import com.zhyonk.entity.VisitorCount;
 import com.zhyonk.entity.VisitorIpCount;
-import com.zhyonk.service.ArticleService;
 import com.zhyonk.service.VisitorService;
 
 /**
@@ -42,7 +40,7 @@ public class VisitorController {
 		List<Visitor> visitorlist = visitorService.getVisitorData();
 		
 		 SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-		
+		 
 		for (Visitor visitor : visitorlist) {
 			visitor.setStrTime(format.format(visitor.getTime()));
 		}
@@ -62,6 +60,8 @@ public class VisitorController {
 			e.printStackTrace();
 		}
 	}
+	
+
 	@RequestMapping(value = "/getProviceCount", method = RequestMethod.GET)
 	public void getProviceCount(ServletRequest request, ServletResponse response){
 		response.setCharacterEncoding("utf-8");
