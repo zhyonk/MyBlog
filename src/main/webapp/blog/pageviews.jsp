@@ -19,6 +19,8 @@
 <!-- jQuery -->
 <script type="text/javascript" src="<%=basePath%>js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/bootstrap-table.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/bootstrap-table-zh-CN.js"></script>
 <script src="<%=basePath%>js/echarts.min.js"></script>
 <script src="<%=basePath%>js/china.js"></script>
 <title></title>
@@ -29,8 +31,11 @@
 
 <link href="<%=basePath%>owl-carousel/owl.carousel.css" rel="stylesheet">
 
+
 <!-- Custom CSS -->
 <link rel="stylesheet" href="<%=basePath%>css/style.css">
+
+<link rel="stylesheet" href="<%=basePath%>css/bootstrap-table.css">
 
 <!-- Custom Fonts -->
 <link rel="stylesheet"
@@ -54,12 +59,7 @@
 	<div class="site-gradients">
 		<div class="site-gradients-media">
 			<figure>
-				<img
-					src="Another%20Yosemite%20short%20movie%20project%20%E2%80%93%20Modern_files/PcLGXNjMTdiFVKTrElCl__DSC2245.jpg"
-					alt="PcLGXNjMTdiFVKTrElCl__DSC2245"
-					srcset="https://themedemos.webmandesign.eu/modern/wp-content/uploads/sites/8/2014/11/PcLGXNjMTdiFVKTrElCl__DSC2245.jpg 1920w, https://themedemos.webmandesign.eu/modern/wp-content/uploads/sites/8/2014/11/PcLGXNjMTdiFVKTrElCl__DSC2245-420x280.jpg 420w, https://themedemos.webmandesign.eu/modern/wp-content/uploads/sites/8/2014/11/PcLGXNjMTdiFVKTrElCl__DSC2245-744x497.jpg 744w, https://themedemos.webmandesign.eu/modern/wp-content/uploads/sites/8/2014/11/PcLGXNjMTdiFVKTrElCl__DSC2245-1200x801.jpg 1200w"
-					sizes="(max-width: 1617px) 100vw, 1617px" height="1080"
-					width="1617">
+				<img width="1617">
 			</figure>
 		</div>
 	</div>
@@ -86,42 +86,18 @@
 		<div class="container">
 			<div class="row">
 				<div id="main-content">
-					<article>
-						<img src="<%=basePath%>images/banner1.jpg" />
+					<img src="<%=basePath%>images/banner1.jpg" />
+					<article style="padding: 45px;">
 						<div class="art-content">
 							<div id="pie" style="height: 500px;"></div>
 						</div>
 						<br>
 						<div id="map" style="height: 600px;"></div>
-
-
-						<table class="table table-hover table-bordered table-striped " style="border-collapse: separate">
-							<caption>
-							<h1>近期访问记录</h1></caption>
-							<thead>
-								<tr>
-									<th>IP</th>
-									<th>时间</th>
-									<th>省份</th>
-									<th>浏览器类型</th>
-									<th>平台</th>
-									<th>访问链接</th>
-									
-								</tr>
-							</thead>
-							<tbody>
-								<tr id="colonetr">
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
+						
+						<table id="tb_departments">
 						</table>
 
-							<script src="./js/pageviews.js"></script>
+						<script src="./js/pageviews.js"></script>
 					</article>
 				</div>
 			</div>

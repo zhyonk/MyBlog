@@ -1,6 +1,8 @@
 package com.zhyonk.MyBlog;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -38,6 +40,12 @@ public class VisitorController {
 	public void getVisitorData(ServletRequest request, ServletResponse response){
 		response.setCharacterEncoding("utf-8");
 		List<Visitor> visitorlist = visitorService.getVisitorData();
+		
+		 SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+		
+		for (Visitor visitor : visitorlist) {
+			visitor.setStrTime(format.format(visitor.getTime()));
+		}
 		try {
 			response.getWriter().println(JSONArray.toJSON(visitorlist));
 		} catch (IOException e) {

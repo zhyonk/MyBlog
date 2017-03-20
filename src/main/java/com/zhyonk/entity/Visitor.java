@@ -4,9 +4,16 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Visitor {
+	public String getStrTime() {
+		return strTime;
+	}
+	public void setStrTime(String strTime) {
+		this.strTime = strTime;
+	}
 	private int log_id;
 	private String ip;
 	private Timestamp time;
+	private String strTime;
 	private String provice;
 	public String getProvice() {
 		return provice;

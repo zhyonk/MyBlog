@@ -12,7 +12,7 @@ function getAricale() {
 		success : function(data) {
 			var text = ""
 			for (var i = 0; i < data.length; i++) {
-				text += '<div class="col-xs-4"> <div class="box-item"> '
+				text += '<div class="col-md-4"> <div class="box-item"> '
 						+ ' <img src="' + data[i].img_src
 						+ '" class="img-responsive"/> '
 						+ '   <div class="content">' + '<h3>' + data[i].title

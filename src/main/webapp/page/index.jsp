@@ -493,17 +493,10 @@ canvas#canvas4 {
 
 
 
-
 			<!--  DEVICE MANAGER -->
 			<div class="content-wrap">
 				<div class="row">
 			<!--  / DEVICE MANAGER -->
-
-
-
-
-
-
 
 
 
@@ -515,182 +508,69 @@ canvas#canvas4 {
 
 
 
+ <div class="content-wrap">
+                <div class="row">
 
-			<div class="content-wrap">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="chart-wrap">
-							<div class="chart-dash">
-								<div id="placeholder" style="width: 100%; height: 200px;"></div>
-							</div>
-							<div class="row">
-								<div class="col-lg-8">
-									<div class="speed">
-										<h2>Speed Avarage</h2>
-										<h1>
-											74 <span>Km / hours</span>
-										</h1>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="traffic">
-										<h2>Traffic per day</h2>
-										<h1>2.5874</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="traffic-rates">
-										<h4>Traffic Rates</h4>
-										<h1>
-											76 % <span>-1,2 %</span>
-										</h1>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="traffic-rates">
-										<h4>Traffic Rates</h4>
-										<h1>
-											25 % <span>-1,8 %</span>
-										</h1>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="traffic-rates">
-										<h4>Traffic Rates</h4>
-										<h1>
-											83 % <span>-1,9 %</span>
-										</h1>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="weather-wrap">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="temperature">
-										<b>Monday</b>, 07:30 AM <span>F</span> <span><b>C</b> </span>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="weather-icon">
-										<i class="wi-day-lightning"></i>
-									</div>
-								</div>
-								<div class="col-lg-8">
-									<div class="weather-text">
-										<h2>
-											Berlin <br>
-											<i>Day Lightning</i>
-										</h2>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="weather-text">
-										<h3>
-											<i class="wi-thermometer"></i>18<i class="wi-celcius"></i>
-										</h3>
-									</div>
-								</div>
-							</div>
-							<div class="weather-dash">
-								<div class="row">
-									<div class="col-lg-2">
-										<div class="daily-weather">
-											<h2>Mon</h2>
-											<h3>
-												85 <span><i class="wi-fahrenheit"></i> </span>
-											</h3>
-											<h4>
-												<span><i class="wi-day-lightning"></i> </span>
-											</h4>
-											<h5>
-												15 <i>km/h</i>
-											</h5>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="daily-weather">
-											<h2>Tue</h2>
-											<h3>
-												81 <span><i class="wi-fahrenheit"></i> </span>
-											</h3>
-											<h4>
-												<i class="wi-day-cloudy"></i>
-											</h4>
-											<h5>
-												12 <i>km/h</i>
-											</h5>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="daily-weather">
-											<h2>Wed</h2>
-											<h3>
-												83 <span><i class="wi-fahrenheit"></i> </span>
-											</h3>
-											<h4>
-												<i class="wi-rain-mix"></i>
-											</h4>
-											<h5>
-												14 <i>km/h</i>
-											</h5>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="daily-weather">
-											<h2>Thu</h2>
-											<h3>
-												80 <span><i class="wi-fahrenheit"></i> </span>
-											</h3>
-											<h4>
-												<i class="wi-day-sunny"></i>
-											</h4>
-											<h5>
-												15 <i>km/h</i>
-											</h5>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="daily-weather">
-											<h2>Fri</h2>
-											<h3>
-												79 <span><i class="wi-fahrenheit"></i> </span>
-											</h3>
-											<h4>
-												<i class="wi-day-storm-showers"></i>
-											</h4>
-											<h5>
-												11 <i>km/h</i>
-											</h5>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="daily-weather">
-											<h2>Sat</h2>
-											<h3>
-												82 <span><i class="wi-fahrenheit"></i> </span>
-											</h3>
-											<h4>
-												<i class="wi-cloudy"></i>
-											</h4>
-											<h5>
-												10 <i>km/h</i>
-											</h5>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
+                    <div class="col-sm-12">
+                        <!-- BLANK PAGE-->
+
+                        <div class="nest" id="Blank_PageClose">
+                            <div class="title-alt">
+                                <h6>
+                                    Blank Page</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#Blank_PageClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#Blank_Page_Content">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+
+                            </div>
+							<!-- 内容写在这 -->
+                            <div class="body-nest" id="Blank_Page_Content">
+                                Content Goes Here
+                                啦啦啦
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OF BLANK PAGE -->
+
+
+                </div>
+
+
+
+                <!-- /END OF CONTENT -->
+
+
+
+                <!-- FOOTER -->
+                <div class="footer-space"></div>
+                <div id="footer">
+                    <div class="devider-footer-left"></div>
+                    <div class="time">
+                        <p id="spanDate">
+                        <p id="clock">
+                    </div>
+                    <div class="copyright">Make with Love
+                        <span class="entypo-heart"></span>Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a> All Rights Reserved</div>
+                    <div class="devider-footer"></div>
+
+                </div>
+                <!-- / END OF FOOTER -->
+
+
+            </div>
+	
+	
+	
+	
+	</div>
 				<!-- /END OF CONTENT -->
 
 
@@ -704,9 +584,6 @@ canvas#canvas4 {
 						<p id="clock">
 					</div>
 					<div class="copyright">
-						Make with Love <span class="entypo-heart"></span>Collect from <a
-							href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-						All Rights Reserved
 					</div>
 					<div class="devider-footer"></div>
 
@@ -714,119 +591,14 @@ canvas#canvas4 {
 				</div>
 				<!-- / END OF FOOTER -->
 
-
+				</div>
 			</div>
 		</div>
-	</div> 
 	<!--  END OF PAPER WRAP -->
 
 	<!-- RIGHT SLIDER CONTENT -->
 	<div class="sb-slidebar sb-right">
-		<div class="right-wrapper">
-			<div class="row">
-				<h3>
-					<span><i class="entypo-gauge"></i>&nbsp;&nbsp;MAIN WIDGET</span>
-				</h3>
-				<div class="col-lg-12">
 
-					<div class="widget-knob">
-						<span class="chart" style="position: relative" data-percent="86">
-							<span class="percent"></span>
-						</span>
-					</div>
-					<div class="widget-def">
-						<b>Distance traveled</b> <br> <i>86% to the check point</i>
-					</div>
-
-					<div class="widget-knob">
-						<span class="speed-car" style="position: relative"
-							data-percent="60"> <span class="percent2"></span>
-						</span>
-					</div>
-					<div class="widget-def">
-						<b>The average speed</b> <br> <i>30KM/h avarage speed</i>
-					</div>
-
-
-					<div class="widget-knob">
-						<span class="overall" style="position: relative" data-percent="25">
-							<span class="percent3"></span>
-						</span>
-					</div>
-					<div class="widget-def">
-						<b>Overall result</b> <br> <i>30KM/h avarage Result</i>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div style="margin-top: 0;" class="right-wrapper">
-			<div class="row">
-				<h3>
-					<span><i class="entypo-chat"></i>&nbsp;&nbsp;CHAT</span>
-				</h3>
-				<div class="col-lg-12">
-					<span class="label label-warning label-chat">Online</span>
-					<ul class="chat">
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-circle"
-									src="http://api.randomuser.me/portraits/thumb/men/20.jpg">
-							</span><b>Dave Junior</b> <br>
-							<i>Last seen : 08:00 PM</i>
-						</a></li>
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-circle"
-									src="http://api.randomuser.me/portraits/thumb/men/21.jpg">
-							</span><b>Kenneth Lucas</b> <br>
-							<i>Last seen : 07:21 PM</i>
-						</a></li>
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-circle"
-									src="http://api.randomuser.me/portraits/thumb/men/22.jpg">
-							</span><b>Heidi Perez</b> <br>
-							<i>Last seen : 05:43 PM</i>
-						</a></li>
-
-
-					</ul>
-
-					<span class="label label-chat">Offline</span>
-					<ul class="chat">
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-offline img-circle"
-									src="http://api.randomuser.me/portraits/thumb/men/23.jpg">
-							</span><b>Dave Junior</b> <br>
-							<i>Last seen : 08:00 PM</i>
-						</a></li>
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-offline img-circle"
-									src="http://api.randomuser.me/portraits/thumb/women/24.jpg">
-							</span><b>Kenneth Lucas</b> <br>
-							<i>Last seen : 07:21 PM</i>
-						</a></li>
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-offline img-circle"
-									src="http://api.randomuser.me/portraits/thumb/men/25.jpg">
-							</span><b>Heidi Perez</b> <br>
-							<i>Last seen : 05:43 PM</i>
-						</a></li>
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-offline img-circle"
-									src="http://api.randomuser.me/portraits/thumb/women/25.jpg">
-							</span><b>Kenneth Lucas</b> <br>
-							<i>Last seen : 07:21 PM</i>
-						</a></li>
-						<li><a href="#"> <span> <img alt=""
-									class="img-chat img-offline img-circle"
-									src="http://api.randomuser.me/portraits/thumb/men/26.jpg">
-							</span><b>Heidi Perez</b> <br>
-							<i>Last seen : 05:43 PM</i>
-						</a></li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
 	</div>
 
 	<!-- END OF RIGHT SLIDER CONTENT-->
