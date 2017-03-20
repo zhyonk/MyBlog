@@ -29,6 +29,18 @@ public class Article {
 	 * 最后操作文章时间
 	 */
 	private Timestamp date;
+	/**
+	 * 字符串形式的，去他妈的，老子不会用layui时间戳格式化
+	 */
+	private String strDate;
+
+	public String getStrDate() {
+		return strDate;
+	}
+
+	public void setStrDate(String strDate) {
+		this.strDate = strDate;
+	}
 
 	/**
 	 * 文章内容

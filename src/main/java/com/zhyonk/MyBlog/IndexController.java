@@ -1,6 +1,7 @@
 package com.zhyonk.MyBlog;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -35,6 +36,11 @@ public class IndexController {
 	public void home(ServletRequest request, ServletResponse response){
 		response.setCharacterEncoding("utf-8");
 		List<Article> articlelist = articleService.getAllArticle();
+		
+		 SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+		for (Article article : articlelist) {
+			article.setStrDate(format.format(article.getDate()));
+		}
 		try {
 			response.getWriter().println(JSONArray.toJSON(articlelist));
 		} catch (IOException e) {

@@ -44,21 +44,21 @@
   把编辑器的初始内容放在这textarea即可
 </textarea>
 
-		<div class="site-demo-button" style="margin-top: 20px;">
-			<button class="layui-btn site-demo-layedit" data-type="content">获取编辑器内容</button>
-			<button class="layui-btn site-demo-layedit" data-type="text">获取编辑器纯文本内容</button>
-			<button class="layui-btn site-demo-layedit" data-type="selection">获取编辑器选中内容</button>
-		</div>
 
-		<fieldset class="layui-elem-field layui-field-title"
-			style="margin-top: 50px;">
-			<legend>自定义工具栏</legend>
-		</fieldset>
-
-		<div style="margin-bottom: 20px; width: 500px;">
-			<textarea class="layui-textarea" id="LAY_demo2" style="display: none"></textarea>
-		</div>
+		<form class="layui-form layui-form-pane" action="">
+			<div class="layui-form-item" pane>
+				<label class="layui-form-label">选择分类</label>
+				<div class="layui-input-block">
+					<input type="radio" name="sex" value="男" title="心情" checked>
+					<input type="radio" name="sex" value="女" title="感悟"> 
+					<input type="radio" name="sex" value="禁" title="禁用" disabled>
+				</div>
+			</div>
+		</form>
 	</div>
+		<div class="site-demo-button" style="margin-top: 20px; float: right">
+			<button class="layui-btn site-demo-layedit" data-type="content">发布</button>
+		</div>
 	<script>
 		layui.use('layedit', function() {
 			var layedit = layui.layedit, $ = layui.jquery;

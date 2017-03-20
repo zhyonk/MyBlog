@@ -84,7 +84,7 @@
 						<ul class="list-inline quicklinks">
 							<li><a href="#">隐私政策</a></li>
 							<li><a href="#">加入我们</a></li>
-							<li><a href="http://localhost:8080/MyBlog/login">后台管理</a></li>
+							<li><a href="<%=basePath1%>login">后台管理</a></li>
 						</ul>
 					</div>
 				</div>
