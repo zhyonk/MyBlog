@@ -71,7 +71,7 @@ var navs = [{
 	"children": [{
 		"title": "浏览量",
 		"icon": "fa-check-square-o",
-		"href": "admin/icheck.html"
+		"href": "admin/visitor.html"
 	},{
 		"title": "最近十天统计",
 		"icon": "fa-cogs",

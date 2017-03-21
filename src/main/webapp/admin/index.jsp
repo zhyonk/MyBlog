@@ -40,6 +40,7 @@
 							<i class="fa fa-bars" aria-hidden="true"></i>
 						</div>
 					</div>
+					
 					<ul class="layui-nav admin-header-item">
 						<li class="layui-nav-item">
 							<a href="javascript:;">清除缓存</a>
@@ -50,6 +51,7 @@
 						<li class="layui-nav-item" id="video1">
 							<a href="javascript:;">视频</a>
 						</li>
+					<!-- 这是右上角个人信息显示的界面 -->
 						<li class="layui-nav-item">
 							<a href="javascript:;" class="admin-header-user">
 								<img src="<%=basePath%>images/0.jpg" />
@@ -57,10 +59,10 @@
 							</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
+									<a href="javascript:;" id="personal"><i class="fa fa-user-circle" aria-hidden="true" ></i> 个人信息</a>
 								</dd>
 								<dd>
-									<a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
+									<a href="javascript:;" id="shezhi"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
 								</dd>
 								<dd id="lock">
 									<a href="javascript:;">
@@ -73,6 +75,8 @@
 							</dl>
 						</li>
 					</ul>
+					
+					
 					<ul class="layui-nav admin-header-item-mobile">
 						<li class="layui-nav-item">
 							<a href="<%=basePath%>login.jsp"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
