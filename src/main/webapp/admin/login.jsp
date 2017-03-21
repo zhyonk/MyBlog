@@ -19,7 +19,10 @@
 <title>登录</title>
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css"
 	media="all" />
+<script type="text/javascript" src="<%=basePath1%>js/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="<%=basePath1%>css/sweet-alert.css">
 <link rel="stylesheet" href="<%=basePath%>css/login.css" />
+
 </head>
 
 <body class="beg-login-bg">
@@ -28,7 +31,7 @@
 			<h1>后台登录</h1>
 		</header>
 		<div class="beg-login-main">
-			<form action="<%=basePath1%>login" class="layui-form" method="post">
+			<form class="layui-form" method="post">
 				<div class="layui-form-item">
 					<label class="beg-login-icon"> <i class="layui-icon">&#xe612;</i>
 					</label> <input type="text" name="username" lay-verify="userName"
@@ -45,7 +48,7 @@
 							value="true" lay-skin="switch" checked title="记住帐号">
 					</div>
 					<div class="beg-pull-right">
-						<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
+						<button class="layui-btn layui-btn-primary" lay-filter="login">
 							<i class="layui-icon">&#xe650;</i> 登录
 						</button>
 					</div>
@@ -60,14 +63,20 @@
 	<script type="text/javascript"
 		src="<%=basePath%>plugins/layui/layui.js"></script>
 	<script>
+
 		layui.use([ 'layer', 'form' ], function() {
 			var layer = layui.layer, $ = layui.jquery, form = layui.form();
-
+			
 			form.on('submit(login)', function(data) {
-				$.post('<%=basePath1%>login', data.field, function(res) {
+				$.ajax({
+					  type: 'POST',
+					  url: '<%=basePath1%>login',
+					  async:false,
+					  data: data.field,
+					  dataType:'html',
 				});
-			});
-		});
+					
+			});});
 	</script>
 </body>
 

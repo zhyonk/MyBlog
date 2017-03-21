@@ -13,4 +13,10 @@
 	<select id="getCarousel"  resultType="com.zhyonk.entity.Carousel">
 		select * from carousel
 	</select>
+	
+	<update id="editCarousel">
+		update carousel set big_title = #{big_title},small_title = #{small_title},img_src=#{img_src},link=#{link}
+		where 
+		id= #{id}
+	</update>
 </mapper>

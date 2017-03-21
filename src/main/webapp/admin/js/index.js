@@ -52,9 +52,9 @@ layui
 					//设置点击
 					$("#shezhi").on('click', function(data) {
 						var obj = {
-								href : "admin/icheck.html",
+								href : "admin/setting.jsp",
 								icon : "fa-cogs",
-								title : "我的个人资料"
+								title : "设置"
 						}
 						tab.tabAdd(obj);
 					})

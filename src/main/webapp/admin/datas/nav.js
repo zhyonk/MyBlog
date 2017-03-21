@@ -36,6 +36,23 @@ var navs = [{
 		"icon": "&#xe628;",
 		"href": "admin/personal.jsp"
 	}]
+},{
+	"title": "首页设置",
+	"icon": "fa-address-book",
+	"spread": false,
+	"children": [{
+		"title": "轮播信息",
+		"icon": "fa-table",
+		"href": "admin/allCarousel.html"
+	}, {
+		"title": "背景图片",
+		"icon": "fa-navicon",
+		"href": "admin/BackgroundImg.jsp"
+	}, {
+		"title": "网站左上角标题",
+		"icon": "&#xe628;",
+		"href": "admin/TitleSetting.jsp"
+	}]
 }, {
 	"title": "反馈",
 	"icon": "&#x1002;",
@@ -61,7 +78,7 @@ var navs = [{
 }, {
 	"title": "设置",
 	"icon": "fa-cogs",
-	"href": "https://www.baidu.com",
+	"href": "admin/setting.jsp",
 	"spread": false
 },{
 	"title": "统计",

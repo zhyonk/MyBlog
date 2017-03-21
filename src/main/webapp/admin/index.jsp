@@ -46,7 +46,7 @@
 							<a href="javascript:;">清除缓存</a>
 						</li>
 						<li class="layui-nav-item">
-							<a href="javascript:;">浏览网站</a>
+							<a href="index">浏览网站</a>
 						</li>
 						<li class="layui-nav-item" id="video1">
 							<a href="javascript:;">视频</a>

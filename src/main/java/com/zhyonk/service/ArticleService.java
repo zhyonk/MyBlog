@@ -22,5 +22,9 @@ public interface ArticleService {
 	 * @return
 	 */
 	public List<Carousel> getCarousel();
-	
+	/**
+	 * 编辑信息
+	 * @param car 
+	 */
+	public void editCarousel(Carousel car);
 }

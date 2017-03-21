@@ -33,5 +33,9 @@ public class ArticleServiceImpl implements ArticleService {
 		List<Carousel> list = articleDao.getCarousel();
 		return list;
 	}
+	@Override
+	public void editCarousel(Carousel car) {
+		articleDao.editCarousel(car.getId(),car.getBig_title(),car.getSmall_title(),car.getImg_src(),car.getLink());
+	}
 
 }

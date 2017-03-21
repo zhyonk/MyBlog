@@ -23,5 +23,14 @@ public interface ArticleDao {
 	 * @return
 	 */
 	public List<Carousel> getCarousel();
+	/**
+	 * 修改轮播数据
+	 * @param id
+	 * @param big_title
+	 * @param small_title
+	 * @param img_src
+	 * @param link
+	 */
+	public void editCarousel(@Param("id")int id, @Param("big_title")String big_title,@Param("small_title") String small_title, @Param("img_src")String img_src, @Param("link")String link);
 
 }
