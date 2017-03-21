@@ -18,10 +18,10 @@ public class MailUtils {
 		// String[] array = new String[] {"sun111@163.com","sun222@sohu.com"};
 		// mailMessage.setTo(array);
 		mailMessage.setTo(account);
-		mailMessage.setFrom("zhyonk@163.com");
+		mailMessage.setFrom("zhyonkblog@163.com");
 		mailMessage.setSubject(subject);
 		mailMessage.setText(text);
-		senderImpl.setUsername("zhyonk@163.com"); // 根据自己的情况,设置username
+		senderImpl.setUsername("zhyonkblog@163.com"); // 根据自己的情况,设置username
 		senderImpl.setPassword("zyk331520"); // 根据自己的情况, 设置password
 		Properties prop = new Properties();
 		prop.put("mail.smtp.auth", "true"); // 将这个参数设为true，让服务器进行认证,认证用户名和密码是否正确

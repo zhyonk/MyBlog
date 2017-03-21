@@ -7,7 +7,8 @@
 	String basePath1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<script type="text/javascript" src="../js/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="../css/sweet-alert.css">
 <footer>
 	<div class="wrap-footer">
 		<div class="container">
@@ -31,33 +32,34 @@
 					<h2 class="footer-title">新文章推送</h2>
 					来把留下你的邮箱
 					<form action="#">
-						<input type="text" name="your-name" id="visitorMail" size="40" placeholder="Your Email" /> 
-						<input type="submit" value="提交" class="btn btn-skin" onclick="sendMail();"/>
+						<input type="text" name="your-name" id="visitorMail" size="40"
+							placeholder="Your Email" /> <input type="submit" value="提交"
+							class="btn btn-skin" onclick="sendMail();" />
 					</form>
 					<script type="text/javascript">
-					function isEmail(str){ 
-						var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
-						return reg.test(str); 
-						} 
-					function sendMail() {
-						var mailAccount = $("#visitorMail").val();
-						if(isEmail(mailAccount)){
-							$.ajax({
-								type : 'GET',
-								url : 'sendVisitorEmail',
-								data:{
-									account:mailAccount
-								},
-								success : function(data) {
-									alert(data)
-								}
-
-							})
-						}else{
-							alert("这不是邮箱格式啊，我怎么发");
+						function isEmail(str) {
+							var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+							return reg.test(str);
 						}
+						function sendMail() {
+							var mailAccount = $("#visitorMail").val();
+							if (isEmail(mailAccount)) {
+								$.ajax({
+									type : 'GET',
+									url : 'sendVisitorEmail',
+									data : {
+										account : mailAccount
+									},
+									success : function(data) {
+										swal("Good job!", data, "success");
+									}
 
-					}
+								})
+							} else {
+								swal("失败了", "这不是邮箱格式啊，我怎么发", "error");
+							}
+
+						}
 					</script>
 				</div>
 			</div>

@@ -43,7 +43,7 @@ var navs = [{
 	"children": [{
 		"title": "信息列表",
 		"icon": "fa-check-square-o",
-		"href": "admin/icheck.html"
+		"href": "admin/allFeedBack.html"
 	}]
 }, {
 	"title": "文章订阅通知",

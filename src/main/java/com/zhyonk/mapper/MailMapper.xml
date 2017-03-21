@@ -8,4 +8,17 @@
 		values(#{account},#{time})
 	</select>
 
+
+	<select id="addMailLog">
+		insert into MailLog(account,subject,text,time) values(#{account},#{subject},#{text},#{time})
+	</select>
+
+	<select id="addFeedBack">
+		insert into feedback(name,email,type,suggestion,time) values(#{name},#{email},#{type},#{suggestion},#{time})
+	</select>
+
+	<select id="getAllFeedBack" resultType="com.zhyonk.entity.FeedBack">
+		select * from feedback
+	</select>
+
 </mapper>
