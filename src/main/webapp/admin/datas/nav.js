@@ -92,6 +92,6 @@ var navs = [{
 	},{
 		"title": "最近十天统计",
 		"icon": "fa-cogs",
-		"href": "admin/icheck.html"
+		"href": "admin/TenDay.html"
 	}]
 }];

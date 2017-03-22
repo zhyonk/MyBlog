@@ -2,6 +2,7 @@ package com.zhyonk.service;
 
 import java.util.List;
 
+import com.zhyonk.entity.DayVisitorCount;
 import com.zhyonk.entity.ProviceCount;
 import com.zhyonk.entity.UserAgent;
 import com.zhyonk.entity.Visitor;
@@ -36,4 +37,9 @@ public interface VisitorService {
 	 * @return
 	 */
 	List<ProviceCount> getProviceCount();
+	/**
+	 * 获取近十天的数据
+	 * @return
+	 */
+	List<DayVisitorCount> getTenDaysVisitorLog();
 }

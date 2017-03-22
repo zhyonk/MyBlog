@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.zhyonk.entity.DayVisitorCount;
 import com.zhyonk.entity.ProviceCount;
 import com.zhyonk.entity.Visitor;
 import com.zhyonk.entity.VisitorCount;
@@ -45,4 +46,10 @@ public interface VisitorDao {
 	 * @return
 	 */
 	public List<ProviceCount> getProviceCount();
+	/**
+	 * 获取从当日起前十天的数据
+	 * @param dateBefore 
+	 * @return
+	 */
+	public DayVisitorCount getTenDaysVisitorLog(@Param("dateBefore")String dateBefore);
 }

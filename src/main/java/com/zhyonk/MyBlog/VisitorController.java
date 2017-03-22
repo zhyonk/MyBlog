@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSONArray;
+import com.zhyonk.entity.DayVisitorCount;
 import com.zhyonk.entity.ProviceCount;
 import com.zhyonk.entity.Visitor;
 import com.zhyonk.entity.VisitorCount;
@@ -76,6 +77,17 @@ public class VisitorController {
 	public void getVisitorIpCount(ServletRequest request, ServletResponse response){
 		response.setCharacterEncoding("utf-8");
 		List<VisitorIpCount> visitorlist = visitorService.getVisitorIpCount();
+		try {
+			response.getWriter().println(JSONArray.toJSON(visitorlist));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value = "/getTenDaysVisitorLog", method = RequestMethod.GET)
+	public void getTenDaysVisitorLog(ServletRequest request, ServletResponse response){
+		response.setCharacterEncoding("utf-8");
+		List<DayVisitorCount> visitorlist = visitorService.getTenDaysVisitorLog();
 		try {
 			response.getWriter().println(JSONArray.toJSON(visitorlist));
 		} catch (IOException e) {
