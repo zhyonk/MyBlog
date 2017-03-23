@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.zhyonk.dao.MailDao;
 import com.zhyonk.entity.FeedBack;
+import com.zhyonk.entity.MailAccount;
 import com.zhyonk.service.MailService;
 import com.zhyonk.util.MailUtils;
 
@@ -42,6 +43,17 @@ public class MailServiceImpl implements MailService {
 	public List<FeedBack> getAllFeedBack() {
 		List<FeedBack> list = mailDao.getAllFeedBack();
 		return list;
+	}
+
+	@Override
+	public List<MailAccount> getAllEmailAccount() {
+		List<MailAccount> list = mailDao.getAllEmailAccount();
+		return list;
+	}
+
+	@Override
+	public void sengMailToAll(List<MailAccount> account, String subject, String text) {
+		MailUtils.sendMails(account, subject, text,mailDao);
 	}
 
 }

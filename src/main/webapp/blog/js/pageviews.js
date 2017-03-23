@@ -237,7 +237,8 @@ var TableInit = function() {
 			limit : params.limit, // 页面大小
 			offset : params.offset, // 页码
 			departmentname : $("#txt_search_departmentname").val(),
-			statu : $("#txt_search_statu").val()
+			statu : $("#txt_search_statu").val(),
+			sortName:this.strTime
 		};
 		return temp;
 	};

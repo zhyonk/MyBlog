@@ -406,3 +406,8 @@ a.btn:focus{outline: 0;}
 .maps iframe{
     pointer-events: none;
 }
+.img-responsive{
+	width: 360px;
+	height: 240px;
+}
+

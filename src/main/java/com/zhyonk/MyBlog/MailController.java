@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSONArray;
 import com.zhyonk.entity.FeedBack;
+import com.zhyonk.entity.Message;
 import com.zhyonk.service.MailService;
 
 /**
@@ -66,4 +67,17 @@ public class MailController {
 			e.printStackTrace();
 		}
 	}
+	@RequestMapping(value = "/sengMailToAll", method = RequestMethod.GET)
+	public void sengMailToAll(ServletRequest request, ServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		MailService.sengMailToAll(MailService.getAllEmailAccount(), "测试一下", "正文");
+		
+		try {
+			response.getWriter().println(JSONArray.toJSON(new Message("成功发送", "1")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

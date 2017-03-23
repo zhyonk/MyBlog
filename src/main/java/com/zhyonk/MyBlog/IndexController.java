@@ -1,19 +1,28 @@
 package com.zhyonk.MyBlog;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONArray;
 import com.zhyonk.entity.Article;
@@ -44,6 +53,27 @@ public class IndexController {
 		}
 		try {
 			response.getWriter().println(JSONArray.toJSON(articlelist));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	@RequestMapping(value = "/postArticle", method = RequestMethod.POST)
+	public void postArticle(ServletRequest request, ServletResponse response) throws UnsupportedEncodingException, ParseException{
+		
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		String title = request.getParameter("title");
+		String text1 = request.getParameter("text1");
+		String text2 = request.getParameter("text2");
+		String smalltitle = request.getParameter("smalltitle");
+		String strdate = request.getParameter("date");
+		String img_src = request.getParameter("path");
+		
+		Timestamp date = new Timestamp(Long.parseLong(strdate));
+		articleService.postArticle(title,smalltitle,text1,text2,img_src,date);
+		
+		try {
+			response.getWriter().println(JSONArray.toJSON(new Message("文章发布成功", "1")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -92,4 +122,26 @@ public class IndexController {
 			e.printStackTrace();
 		}
 	}
+	
+	 @RequestMapping(value = "/articleImgUpdate")  
+	    public void fileUpload(MultipartFile file,HttpServletRequest request,ServletResponse response) {  
+	        // 判断文件是否为空  
+	        if (!file.isEmpty()) {  
+	            try {  
+	                // 文件保存路径  
+	                String filePath = request.getSession().getServletContext().getRealPath("/") + "blog/images/"  
+	                        + file.getOriginalFilename();  
+	                File targetFile = new File(filePath);
+	                if(!targetFile.exists()){
+	                	targetFile.mkdir();
+	                }
+	                // 转存文件  
+	                file.transferTo(targetFile);  
+	            	response.getWriter().println(JSONArray.toJSON(new Message("成功","blog/images/"+file.getOriginalFilename())));
+	            } catch (Exception e) {  
+	                e.printStackTrace();  
+	            }  
+	        }  
+	        // 重定向  
+	    }  
 }

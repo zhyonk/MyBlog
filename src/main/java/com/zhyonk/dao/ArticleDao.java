@@ -1,5 +1,6 @@
 package com.zhyonk.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -32,5 +33,14 @@ public interface ArticleDao {
 	 * @param link
 	 */
 	public void editCarousel(@Param("id")int id, @Param("big_title")String big_title,@Param("small_title") String small_title, @Param("img_src")String img_src, @Param("link")String link);
+	/**
+	 * 发布文章啊
+	 * @param title 标题
+	 * @param smalltitle 小标题 
+	 * @param text1	带标签的内容
+	 * @param text2   纯文字内容
+	 * @param date  客户端的点发布的发布时间
+	 */
+	public void postArticle(@Param("title")String title, @Param("smalltitle")String smalltitle, @Param("text1")String text1, @Param("text2")String text2,@Param("img_src")String img_src, @Param("date")Timestamp date);
 
 }

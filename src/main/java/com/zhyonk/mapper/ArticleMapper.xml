@@ -19,4 +19,11 @@
 		where 
 		id= #{id}
 	</update>
+	
+		<select id="postArticle">
+		insert into
+		article(title,outline,content,date,img_src,content1)
+		values(#{title},#{smalltitle},#{text1},#{date},#{img_src},#{text2})
+	</select>
+	
 </mapper>

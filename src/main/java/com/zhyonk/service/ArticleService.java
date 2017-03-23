@@ -1,5 +1,7 @@
 package com.zhyonk.service;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.zhyonk.entity.Article;
@@ -27,4 +29,15 @@ public interface ArticleService {
 	 * @param car 
 	 */
 	public void editCarousel(Carousel car);
+	/**
+	 * 发布文章啊
+	 * @param title 标题
+	 * @param smalltitle 小标题 
+	 * @param text1	带标签的内容
+	 * @param text2   纯文字内容
+	 * @param img_src 图片位置
+	 * @param date  客户端的点发布的发布时间
+	 */
+	public void postArticle(String title, String smalltitle, String text1, String text2, String img_src, Timestamp date);
+	
 }

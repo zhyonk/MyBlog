@@ -5,7 +5,7 @@ $(document).ready(
 					function(result) {
 						var obj = eval('(' + result + ')');
 						var text = ""
-						text += '<img src="images/banner1.jpg" />'
+						text += '<img src="images/banner1.jpg"/>'
 							+'<div class="art-content"><h1>'+obj.title+'</h1>'
 							+'<div class="info">By <a href="#">'+obj.author+'  </a>'+timeToString(obj.date)+'</div>'
 							+'<div class="excerpt">'+obj.content+'</div></div>'

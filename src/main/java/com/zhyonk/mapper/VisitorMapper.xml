@@ -21,6 +21,7 @@
 		visitor_log.link
 		FROM
 		visitor_log
+		group by time desc
 	</select>
 
 	<select id="getVisitorCount" resultType="com.zhyonk.entity.VisitorCount">

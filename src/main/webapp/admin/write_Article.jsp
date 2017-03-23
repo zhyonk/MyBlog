@@ -24,6 +24,9 @@
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css"
 	media="all" />
 <link rel="stylesheet" href="<%=basePath%>css/main.css" />
+
+<script type="text/javascript" src="<%=basePath1%>js/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="<%=basePath1%>css/sweet-alert.css">
 <script src="<%=basePath%>plugins/layui/layui.js" charset="utf-8"></script>
 </head>
 
@@ -34,7 +37,40 @@
 			<legend>标题</legend>
 		</fieldset>
 		<input type="text" name="title" required lay-verify="required"
-			placeholder="请输入标题" autocomplete="off" class="layui-input">
+			placeholder="请输入标题" autocomplete="off" class="layui-input"
+			id="maintitle">
+		<fieldset class="layui-elem-field layui-field-title"
+			style="margin-top: 50px;">
+			<legend>副标题</legend>
+		</fieldset>
+		<input type="text" name="title" required lay-verify="required"
+			placeholder="请输入标题" autocomplete="off" class="layui-input"
+			id="smalltitle">
+			
+				<fieldset class="layui-elem-field layui-field-title"
+			style="margin-top: 20px;">
+			<legend>上传文章图片</legend>
+		</fieldset>
+
+		<input type="file" name="file" class="layui-upload-file" lay-title="添加文章图片">
+
+
+
+	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+	<script>
+		var filepath = "";
+		layui.use('upload', function() {
+			layui.upload({
+				url : '../articleImgUpdate' //上传接口
+				,
+				success : function(res) { 
+					swal("good job", "文件上传成功", "success");
+					filepath=res.status
+				}
+			});
+		});
+	</script>
+			
 		<fieldset class="layui-elem-field layui-field-title"
 			style="margin-top: 50px;">
 			<legend>文章内容</legend>
@@ -50,15 +86,15 @@
 				<label class="layui-form-label">选择分类</label>
 				<div class="layui-input-block">
 					<input type="radio" name="sex" value="男" title="心情" checked>
-					<input type="radio" name="sex" value="女" title="感悟"> 
-					<input type="radio" name="sex" value="禁" title="禁用" disabled>
+					<input type="radio" name="sex" value="女" title="感悟"> <input
+						type="radio" name="sex" value="禁" title="禁用" disabled>
 				</div>
 			</div>
 		</form>
 	</div>
-		<div class="site-demo-button" style="margin-top: 20px; float: right">
-			<button class="layui-btn site-demo-layedit" data-type="content">发布</button>
-		</div>
+	<div class="site-demo-button" style="margin-top: 20px; float: right">
+		<button class="layui-btn site-demo-layedit" data-type="content">发布</button>
+	</div>
 	<script>
 		layui.use('layedit', function() {
 			var layedit = layui.layedit, $ = layui.jquery;
@@ -69,14 +105,44 @@
 			//编辑器外部操作
 			var active = {
 				content : function() {
-					alert(layedit.getContent(index)); //获取编辑器内容
+					var title = $("#maintitle").val();
+					var smalltitle = $("#smalltitle").val();
+					if (typeof (title) == "undefined") {
+						swal("抱歉", "好歹写个标题吧", "error");
+						return;
+					}
+					if (typeof (smalltitle) == "undefined") {
+						swal("抱歉", "副标题也不能拉...", "error");
+						return;
+					}
+					if(filepath==""){
+						swal("抱歉", "咳咳..必须上传个图片", "error");
+						return;
+					}
+					//完整的内容包括标签
+					var text1 = layedit.getContent(index);
+					//纯文字内容
+					var text2 = layedit.getText(index);
+					var date = new Date().getTime();
+					$.ajax({
+						url : "../postArticle",
+						 async: false,
+						data : {
+							title : title,
+							smalltitle : smalltitle,
+							text1 : text1,
+							text2 : text2,
+							date : date,
+							path :filepath
+						},
+						
+						type : 'POST',
+						dataType : 'json',
+						success : function(res) {
+							swal("good job", "发布成功", "success");
+						}
+					})
 				},
-				text : function() {
-					alert(layedit.getText(index)); //获取编辑器纯文本内容
-				},
-				selection : function() {
-					alert(layedit.getSelection(index));
-				}
 			};
 
 			$('.site-demo-layedit').on('click', function() {
@@ -91,6 +157,28 @@
 				height : 100
 			})
 		});
+		Date.prototype.format = function(format){ 
+			var o = { 
+			"M+" : this.getMonth()+1, //month 
+			"d+" : this.getDate(), //day 
+			"h+" : this.getHours(), //hour 
+			"m+" : this.getMinutes(), //minute 
+			"s+" : this.getSeconds(), //second 
+			"q+" : Math.floor((this.getMonth()+3)/3),
+			"S" : this.getMilliseconds() //millisecond 
+			} 
+
+			if(/(y+)/.test(format)) { 
+			format = format.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+			} 
+
+			for(var k in o) { 
+			if(new RegExp("("+ k +")").test(format)) { 
+			format = format.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length)); 
+			} 
+			} 
+			return format; 
+			} 
 	</script>
 
 </body>

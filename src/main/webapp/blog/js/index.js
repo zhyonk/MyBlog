@@ -15,7 +15,7 @@ function getAricale() {
 				text += '<div class="col-md-4"> <div class="box-item"> '
 						+ ' <img src="' + data[i].img_src
 						+ '" class="img-responsive"/> '
-						+ '   <div class="content">' + '<h3>' + data[i].title
+						+ '   <div class="content" style="width:360px;height:314px">' + '<h3>' + data[i].title
 						+ '</h3>' + ' <p>' + data[i].outline + '</p>'
 						+ '<a href=blog/single.jsp?id=' + data[i].article_id
 						+ '>查看全文</a>' + '<br><br><span>'

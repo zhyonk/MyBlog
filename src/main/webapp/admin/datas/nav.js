@@ -17,7 +17,7 @@ var navs = [{
 	}, {
 		"title": "标签",
 		"icon": "&#xe609;",
-		"href": "admin/nav.html"
+		"href": "admin/write_Article2.jsp"
 	}]
 }, {
 	"title": "用户",

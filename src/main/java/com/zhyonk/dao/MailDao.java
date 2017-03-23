@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.zhyonk.entity.FeedBack;
+import com.zhyonk.entity.MailAccount;
 
 
 public interface MailDao {
@@ -36,4 +37,9 @@ public interface MailDao {
 	 * @return
 	 */
 	public List<FeedBack> getAllFeedBack();
+	/**
+	 * 获取所有的人的邮箱
+	 * @return
+	 */
+	public List<MailAccount> getAllEmailAccount();
 }
