@@ -152,7 +152,6 @@ public class UserAgentUtil {
 			} else {// temp形如"16.0.1 Gecko/20121011"
 				ffVersion = temp.substring(0, temp.indexOf(" "));
 			}
-			System.out.println("Temp:"+ffVersion);
 			return new UserAgent("UCBrowser", ffVersion, platformType, platformSeries, platformVersion);
 		} 
 		else {// 暂时支持以上三个主流.其它浏览器,待续...

@@ -15,8 +15,7 @@
 		visitor_log.country,
 		visitor_log.provice,
 		visitor_log.city,
-		DATE_FORMAT(time,'%Y-%m-%d
-		%H:%i:%s') As time,
+		DATE_FORMAT(time,'%Y-%m-%d %H:%i:%s') As time,
 		visitor_log.borwser_Type,
 		visitor_log.platformType,
 		visitor_log.link
@@ -38,7 +37,7 @@
 
 	<select id="getVisitorIpCount" resultType="com.zhyonk.entity.VisitorIpCount">
 		select provice as
-		ip,count(provice) as count from visitor_log group by provice desc
+		ip,count(provice) as count from visitor_log group by provice asc
 		limit 3;
 	</select>
 
