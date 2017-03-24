@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css"
 	media="all" />
 <link rel="stylesheet" href="<%=basePath%>css/main.css" />
-
+<script type="text/javascript" src="<%=basePath1%>js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="<%=basePath1%>js/sweet-alert.min.js"></script>
 <link rel="stylesheet" href="<%=basePath1%>css/sweet-alert.css">
 <script src="<%=basePath%>plugins/layui/layui.js" charset="utf-8"></script>
@@ -77,27 +77,48 @@
 		</fieldset>
 
 		<textarea class="layui-textarea" id="LAY_demo1" style="display: none">  
-  把编辑器的初始内容放在这textarea即可
 </textarea>
 
 
 		<form class="layui-form layui-form-pane" action="">
 			<div class="layui-form-item" pane>
 				<label class="layui-form-label">选择分类</label>
-				<div class="layui-input-block">
-					<input type="radio" name="sex" value="男" title="心情" checked>
-					<input type="radio" name="sex" value="女" title="感悟"> <input
-						type="radio" name="sex" value="禁" title="禁用" disabled>
+				<div class="layui-input-block" id="type1">
+				<!-- 分类加在这 -->
 				</div>
 			</div>
 		</form>
 	</div>
-	<div class="site-demo-button" style="margin-top: 20px; float: right">
+	<div class="site-demo-button" style="margin-left: 20px; margin-top: 10px;">
 		<button class="layui-btn site-demo-layedit" data-type="content">发布</button>
 	</div>
 	<script>
+		/* 可能是因为layer 的加载顺序不对 */
+		$(document).ready(function(){
+			$.ajax({
+				url:"../getArticleType",
+				dataType:'json',
+				success:function(res){
+					text='<input type="radio" name="type" value="'+res[0].id+'" title="'+res[0].type_name+'" checked>';
+					if(res.length>1){
+						for (var i = 1; i < res.length; i++) {
+							text='<input type="radio" name="type" value="'+res[i].id+'" title="'+res[i].type_name+'">'
+						}
+					}
+					$("#type1").append(text);
+				},
+				error:function(res){
+					swal("error", "获取文章类型失败", "error");
+				}
+			})
+			
+			
+		});
+		
+	
 		layui.use('layedit', function() {
 			var layedit = layui.layedit, $ = layui.jquery;
+
 
 			//构建一个默认的编辑器
 			var index = layedit.build('LAY_demo1');

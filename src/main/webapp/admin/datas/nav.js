@@ -13,7 +13,7 @@ var navs = [{
 	}, {
 		"title": "分类目录",
 		"icon": "&#xe63c;",
-		"href": "admin/table.html"
+		"href": "admin/Article_type.html"
 	}, {
 		"title": "标签",
 		"icon": "&#xe609;",

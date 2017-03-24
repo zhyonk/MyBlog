@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhyonk.entity.Article;
+import com.zhyonk.entity.ArticleType;
 import com.zhyonk.entity.Carousel;
 import com.zhyonk.entity.Message;
 import com.zhyonk.service.ArticleService;
@@ -57,6 +59,20 @@ public class IndexController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping(value = "/getArticleType", method = RequestMethod.GET)
+	public void getArticleType(ServletRequest request, ServletResponse response){
+		response.setCharacterEncoding("utf-8");
+		List<ArticleType> articlelist = articleService.getArticleType();
+		
+		try {
+			response.getWriter().println(JSONArray.toJSON(articlelist));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@RequestMapping(value = "/postArticle", method = RequestMethod.POST)
 	public void postArticle(ServletRequest request, ServletResponse response) throws UnsupportedEncodingException, ParseException{
 		
@@ -101,6 +117,20 @@ public class IndexController {
 		}
 	}
 	
+	@RequestMapping(value = "/addArticleType", method = RequestMethod.POST)
+	public void addArticleType(ServletRequest request, ServletResponse response){
+		response.setCharacterEncoding("utf-8");
+		
+		String name = request.getParameter("name");
+		
+		articleService.addArticleType(name);
+		try {
+			response.getWriter().println(JSONArray.toJSON(new Message("success", "1")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping(value = "/editCarousel", method = RequestMethod.POST)
 	public void editCarousel(ServletRequest request, ServletResponse response){
 		Carousel car = new Carousel();
@@ -116,6 +146,20 @@ public class IndexController {
 		car.setLink(link);
 		response.setCharacterEncoding("utf-8");
 		articleService.editCarousel(car);
+		try {
+			response.getWriter().println(JSONArray.toJSON(new Message("成功","success")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value = "/delArticleType", method = RequestMethod.POST)
+	public void delArticleType(ServletRequest request, ServletResponse response){
+		String data = request.getParameter("data");
+		response.setCharacterEncoding("utf-8");
+		List<ArticleType> parseArray = JSONArray.parseArray(data, ArticleType.class);
+		
+		articleService.delArticleType(parseArray);
 		try {
 			response.getWriter().println(JSONArray.toJSON(new Message("成功","success")));
 		} catch (IOException e) {

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.zhyonk.entity.Article;
+import com.zhyonk.entity.ArticleType;
 import com.zhyonk.entity.Carousel;
 
 public interface ArticleService {
@@ -39,5 +40,22 @@ public interface ArticleService {
 	 * @param date  客户端的点发布的发布时间
 	 */
 	public void postArticle(String title, String smalltitle, String text1, String text2, String img_src, Timestamp date);
+	
+	/**
+	 * 获取所有的文章类型
+	 * @return
+	 */
+	public List<ArticleType> getArticleType();
+	/**
+	 * 添加新的标签
+	 * @param name
+	 * @return
+	 */
+	public void addArticleType(String name);
+	/**
+	 * 删除的列
+	 * @param parseArray
+	 */
+	public void delArticleType(List<ArticleType> parseArray);
 	
 }

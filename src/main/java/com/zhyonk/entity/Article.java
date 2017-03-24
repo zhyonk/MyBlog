@@ -33,6 +33,18 @@ public class Article {
 	 * 字符串形式的，去他妈的，老子不会用layui时间戳格式化
 	 */
 	private String strDate;
+	/**
+	 * 文章状态，是否删除
+	 */
+	private int is_del;
+	
+	public int getIs_del() {
+		return is_del;
+	}
+
+	public void setIs_del(int is_del) {
+		this.is_del = is_del;
+	}
 
 	public String getStrDate() {
 		return strDate;

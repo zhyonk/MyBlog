@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.zhyonk.dao.ArticleDao;
 import com.zhyonk.entity.Article;
+import com.zhyonk.entity.ArticleType;
 import com.zhyonk.entity.Carousel;
 import com.zhyonk.service.ArticleService;
 
@@ -43,6 +44,24 @@ public class ArticleServiceImpl implements ArticleService {
 	public void postArticle(String title, String smalltitle, String text1, String text2,String img_src,Timestamp date) {
 		// TODO Auto-generated method stub
 		articleDao.postArticle(title,smalltitle,text1,text2,img_src,date);
+	}
+	@Override
+	public List<ArticleType> getArticleType() {
+		List<ArticleType> list = articleDao.getArticleType();
+		return list;
+	}
+	@Override
+	public void addArticleType(String name) {
+		articleDao.addArticleType(name);
+	}
+	@Override
+	public void delArticleType(List<ArticleType> list) {
+		
+		for (ArticleType articleType : list) {
+			int id = articleType.getId();
+			articleDao.delArticleType(id);
+		}
+		
 	}
 
 }

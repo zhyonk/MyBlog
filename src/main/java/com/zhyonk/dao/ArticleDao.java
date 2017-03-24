@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.zhyonk.entity.Article;
+import com.zhyonk.entity.ArticleType;
 import com.zhyonk.entity.Carousel;
 public interface ArticleDao {
 	/**
@@ -42,5 +43,20 @@ public interface ArticleDao {
 	 * @param date  客户端的点发布的发布时间
 	 */
 	public void postArticle(@Param("title")String title, @Param("smalltitle")String smalltitle, @Param("text1")String text1, @Param("text2")String text2,@Param("img_src")String img_src, @Param("date")Timestamp date);
+	/**
+	 * 获取所有的文章类型
+	 * @return
+	 */
+	public List<ArticleType> getArticleType();
+	/**
+	 * 添加分类名称
+	 * @param name
+	 */
+	public void addArticleType(@Param("name")String name);
+	/**
+	 * 要删除的ID
+	 * @param id
+	 */
+	public void delArticleType(@Param("id")int id);
 
 }

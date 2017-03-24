@@ -3,9 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhyonk.dao.ArticleDao">
 	<select id="getAllArticle"  resultType="com.zhyonk.entity.Article">
-		select * from article
+		select * from article where is_del = 0
 	</select>
-	
+
+	<select id="getArticleType"  resultType="com.zhyonk.entity.ArticleType">
+		select * from article_type where is_del = 0
+	</select>	
 	<select id="getArticleById"  resultType="com.zhyonk.entity.Article">
 		select * from article where article_id = #{id}
 	</select>
@@ -20,7 +23,17 @@
 		id= #{id}
 	</update>
 	
-		<select id="postArticle">
+	<update id="delArticleType">
+		update article_type set is_del = #{id}
+		where 
+		id= #{id}
+	</update>
+	
+	<select id="addArticleType">
+		insert into article_type(type_name) values(#{name})
+	</select>
+	
+	<select id="postArticle">
 		insert into
 		article(title,outline,content,date,img_src,content1)
 		values(#{title},#{smalltitle},#{text1},#{date},#{img_src},#{text2})
