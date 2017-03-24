@@ -129,7 +129,9 @@ public class IndexController {
 	        if (!file.isEmpty()) {  
 	            try {  
 	                // 文件保存路径  
-	                String filePath = request.getSession().getServletContext().getRealPath("/") + "blog/images/"  
+//	                String filePath = request.getSession().getServletContext().getRealPath("/") + "blog/images/"  
+//	                        + file.getOriginalFilename();  
+	                String filePath = "c:/MyBlog/images/"  
 	                        + file.getOriginalFilename();  
 	                File targetFile = new File(filePath);
 	                if(!targetFile.exists()){
@@ -137,7 +139,7 @@ public class IndexController {
 	                }
 	                // 转存文件  
 	                file.transferTo(targetFile);  
-	            	response.getWriter().println(JSONArray.toJSON(new Message("成功","blog/images/"+file.getOriginalFilename())));
+	            	response.getWriter().println(JSONArray.toJSON(new Message("成功","../pic/"+file.getOriginalFilename())));
 	            } catch (Exception e) {  
 	                e.printStackTrace();  
 	            }  

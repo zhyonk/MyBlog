@@ -7,8 +7,8 @@
 	String basePath1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<script type="text/javascript" src="../js/sweet-alert.min.js"></script>
-<link rel="stylesheet" href="../css/sweet-alert.css">
+<script type="text/javascript" src="<%=basePath1 %>js/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="<%=basePath1 %>css/sweet-alert.css">
 <footer>
 	<div class="wrap-footer">
 		<div class="container">
