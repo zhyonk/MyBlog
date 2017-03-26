@@ -73,62 +73,8 @@
 				</div>
 			</div> -->
 
-			<div class="layui-form-item">
-				<label class="layui-form-label">单行选择框</label>
-				<div class="layui-input-block">
-					<select name="interest" lay-filter="aihao">
-						<option value=""></option>
-						<option value="0">写作</option>
-						<option value="1" selected="">阅读</option>
-						<option value="2">游戏</option>
-						<option value="3">音乐</option>
-						<option value="4">旅行</option>
-					</select>
-				</div>
-			</div>
 
-			<div class="layui-form-item">
-				<label class="layui-form-label">分组选择框</label>
-				<div class="layui-input-inline">
-					<select id="quiz">
-						<option value="">请选择问题</option>
-						<optgroup label="城市记忆">
-							<option value="你工作的第一个城市">你工作的第一个城市</option>
-						</optgroup>
-						<optgroup label="学生时代">
-							<option value="你的工号">你的工号</option>
-							<option value="你最喜欢的老师">你最喜欢的老师</option>
-						</optgroup>
-					</select>
-				</div>
-			</div>
 
-			<div class="layui-form-item">
-				<label class="layui-form-label">行内选择框</label>
-				<div class="layui-input-inline">
-					<select id="provice">
-						<option value="">请选择省</option>
-					</select>
-				</div>
-				<div class="layui-input-inline">
-					<select id="city">
-						<option value="">请选择市</option>
-						<option value="杭州">杭州</option>
-						<option value="宁波" disabled="">宁波</option>
-						<option value="温州">温州</option>
-						<option value="温州">台州</option>
-						<option value="温州">绍兴</option>
-					</select>
-				</div>
-				<div class="layui-input-inline">
-					<select id="village">
-						<option value="">请选择县/区</option>
-						<option value="西湖区">西湖区</option>
-						<option value="余杭区">余杭区</option>
-						<option value="拱墅区">临安市</option>
-					</select>
-				</div>
-			</div>
 			<script type="text/javascript">
 				var text = "";
 				for (var i = 0; i < Area.length; i++) {

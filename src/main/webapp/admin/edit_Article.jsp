@@ -94,6 +94,9 @@
 			</div>
 		</form>
 	</div>
+	
+
+	
 	<div class="site-demo-button" style="margin-left: 20px; margin-top: 10px;">
 		<button class="layui-btn site-demo-layedit" data-type="content">发布</button>
 	</div>
@@ -103,11 +106,12 @@
 			$.ajax({
 				url:"../getArticleType",
 				dataType:'json',
+				async:false,
 				success:function(res){
 					text='<input type="radio" name="type" value="'+res[0].id+'" title="'+res[0].type_name+'" checked>';
 					if(res.length>1){
 						for (var i = 1; i < res.length; i++) {
-							text='<input type="radio" name="type" value="'+res[i].id+'" title="'+res[i].type_name+'">'
+							text+='<input type="radio" name="type" value="'+res[i].id+'" title="'+res[i].type_name+'">'
 						}
 					}
 					$("#type1").append(text);
@@ -165,16 +169,19 @@
 					//纯文字内容
 					var text2 = layedit.getText(index);
 					var date = new Date().getTime();
+					var a = $('input[name="type"]:checked').val();
 					$.ajax({
-						url : "../postArticle",
+						url : "../editArticle",
 						 async: false,
 						data : {
+							id:parent.getArticleId(),						
 							title : title,
 							smalltitle : smalltitle,
 							text1 : text1,
 							text2 : text2,
 							date : date,
-							path :filepath
+							path :filepath,
+							type_id:a
 						},
 						
 						type : 'POST',

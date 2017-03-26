@@ -23,6 +23,12 @@
 		id= #{id}
 	</update>
 	
+	<update id="editArticle">
+		update article set title = #{title},outline = #{smalltitle},img_src=#{img_src},content=#{text1},type_id=#{type_id}
+		where 
+		article_id= #{id}
+	</update>
+	
 	<update id="delArticleType">
 		update article_type set is_del = 1
 		where 
@@ -41,8 +47,8 @@
 	
 	<select id="postArticle">
 		insert into
-		article(title,outline,content,date,img_src,content1)
-		values(#{title},#{smalltitle},#{text1},#{date},#{img_src},#{text2})
+		article(title,outline,content,date,img_src,type_id)
+		values(#{title},#{smalltitle},#{text1},#{date},#{img_src},#{type_id})
 	</select>
 	
 </mapper>

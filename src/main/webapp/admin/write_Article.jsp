@@ -94,7 +94,15 @@
 				<!-- 分类加在这 -->
 				</div>
 			</div>
+			 <div class="layui-form-item">
+		    <label class="layui-form-label">通知订阅</label>
+		    <div class="layui-input-block">
+		      <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="开启|关闭">
+		    </div>
+		    
+		  </div>
 		</form>
+	
 	</div>
 	<div class="site-demo-button" style="margin-left: 20px; margin-top: 10px;">
 		<button class="layui-btn site-demo-layedit" data-type="content">发布</button>
@@ -105,6 +113,7 @@
 			$.ajax({
 				url:"../getArticleType",
 				dataType:'json',
+				async:false,
 				success:function(res){
 					text='<input type="radio" name="type" value="'+res[0].id+'" title="'+res[0].type_name+'"  lay-filter="radio" checked>';
 					if(res.length>1){
@@ -118,11 +127,11 @@
 					swal("error", "获取文章类型失败", "error");
 				}
 			})
-
-			var a = $("input[type='radio']:checked").val();
 			
+			
+			$("input[name='type']").find("option:selected").text();
 		});
-	
+		
 		layui.use('layedit', function() {
 		var layedit = layui.layedit, $ = layui.jquery;
 
@@ -133,6 +142,10 @@
 			//编辑器外部操作
 			var active = {
 				content : function() {
+					
+					var isChecked = $("input[name='open']").get(0).checked;
+
+					
 					var title = $("#maintitle").val();
 					var smalltitle = $("#smalltitle").val();
 					if (typeof (title) == "undefined") {
@@ -151,7 +164,10 @@
 					var text1 = layedit.getContent(index);
 					//纯文字内容
 					var text2 = layedit.getText(index);
+					var a = $('input[name="type"]:checked').val();
 					var date = new Date().getTime();
+					var flag;
+					//通知
 					$.ajax({
 						url : "../postArticle",
 						 async: false,
@@ -162,7 +178,8 @@
 							text2 : text2,
 							date : date,
 							path :filepath,
-							
+							type_id:a,
+							flag:isChecked
 						},
 						
 						type : 'POST',

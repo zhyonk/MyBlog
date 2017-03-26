@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.mysql.jdbc.MysqlDataTruncation;
 import com.zhyonk.entity.Article;
 import com.zhyonk.entity.ArticleType;
 import com.zhyonk.entity.Carousel;
@@ -38,8 +39,11 @@ public interface ArticleService {
 	 * @param text2   纯文字内容
 	 * @param img_src 图片位置
 	 * @param date  客户端的点发布的发布时间
+	 * @param type_id 类别id
+	 * @param flag 是否通知订阅的人
+	 * @throws MysqlDataTruncation 就是文本内容有点长的时候报错
 	 */
-	public void postArticle(String title, String smalltitle, String text1, String text2, String img_src, Timestamp date);
+	public void postArticle(String title, String smalltitle, String text1, String text2, String img_src, Timestamp date, String type_id, String flag) throws MysqlDataTruncation;
 	
 	/**
 	 * 获取所有的文章类型
@@ -62,5 +66,17 @@ public interface ArticleService {
 	 * @param article_id
 	 */
 	public void delArticleById(String article_id);
+	/**
+	 * 编辑文章并保存
+	 * @param id
+	 * @param title
+	 * @param smalltitle
+	 * @param text1
+	 * @param img_src
+	 * @param date
+	 * @param type_id
+	 */
+	public void editArticle(String id, String title, String smalltitle, String text1, String img_src, Timestamp date,
+			String type_id);
 	
 }

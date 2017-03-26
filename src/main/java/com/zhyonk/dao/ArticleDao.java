@@ -41,8 +41,9 @@ public interface ArticleDao {
 	 * @param text1	带标签的内容
 	 * @param text2   纯文字内容
 	 * @param date  客户端的点发布的发布时间
+	 * @param i 
 	 */
-	public void postArticle(@Param("title")String title, @Param("smalltitle")String smalltitle, @Param("text1")String text1, @Param("text2")String text2,@Param("img_src")String img_src, @Param("date")Timestamp date);
+	public void postArticle(@Param("title")String title, @Param("smalltitle")String smalltitle, @Param("text1")String text1, @Param("text2")String text2,@Param("img_src")String img_src, @Param("date")Timestamp date, @Param("type_id")int type_id);
 	/**
 	 * 获取所有的文章类型
 	 * @return
@@ -63,5 +64,7 @@ public interface ArticleDao {
 	 * @param article_id
 	 */
 	public void delArticleById(@Param("article_id")String article_id);
+	
+	public void editArticle(@Param("id")int id,@Param("title")String title, @Param("smalltitle")String smalltitle, @Param("text1")String text1,@Param("img_src")String img_src, @Param("date")Timestamp date, @Param("type_id")int type_id );
 
 }

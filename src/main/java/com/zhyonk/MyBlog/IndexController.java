@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.mysql.jdbc.MysqlDataTruncation;
 import com.zhyonk.entity.Article;
 import com.zhyonk.entity.ArticleType;
 import com.zhyonk.entity.Carousel;
@@ -84,10 +85,42 @@ public class IndexController {
 		String smalltitle = request.getParameter("smalltitle");
 		String strdate = request.getParameter("date");
 		String img_src = request.getParameter("path");
+		String type_id = request.getParameter("type_id");
+		String flag = request.getParameter("flag");
 		
 		Timestamp date = new Timestamp(Long.parseLong(strdate));
-		articleService.postArticle(title,smalltitle,text1,text2,img_src,date);
 		
+		try {
+			articleService.postArticle(title,smalltitle,text1,text2,img_src,date,type_id,flag);
+			response.getWriter().println(JSONArray.toJSON(new Message("文章发布成功", "1")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (MysqlDataTruncation e) {
+			try {
+				response.getWriter().println(JSONArray.toJSON(new Message("文字过多了", "0")));
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value = "/editArticle", method = RequestMethod.POST)
+	public void editArticle(ServletRequest request, ServletResponse response) throws UnsupportedEncodingException, ParseException{
+		
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		String title = request.getParameter("title");
+		String text1 = request.getParameter("text1");
+		String id = request.getParameter("id");
+		String smalltitle = request.getParameter("smalltitle");
+		String strdate = request.getParameter("date");
+		String img_src = request.getParameter("path");
+		String type_id = request.getParameter("type_id");
+		
+		Timestamp date = new Timestamp(Long.parseLong(strdate));
+		
+		articleService.editArticle(id,title,smalltitle,text1,img_src,date,type_id);
 		try {
 			response.getWriter().println(JSONArray.toJSON(new Message("文章发布成功", "1")));
 		} catch (IOException e) {
