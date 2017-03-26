@@ -25,6 +25,8 @@ public class Article {
 	 * 文章简略信息
 	 */
 	private String outline;
+	
+	
 	/**
 	 * 最后操作文章时间
 	 */
@@ -37,6 +39,11 @@ public class Article {
 	 * 文章状态，是否删除
 	 */
 	private int is_del;
+	
+	/**
+	 * 文章内容
+	 */
+	private String content;
 	
 	public int getIs_del() {
 		return is_del;
@@ -54,10 +61,7 @@ public class Article {
 		this.strDate = strDate;
 	}
 
-	/**
-	 * 文章内容
-	 */
-	private String content;
+
 
 	public int getArticle_id() {
 		return article_id;

@@ -24,9 +24,15 @@
 	</update>
 	
 	<update id="delArticleType">
-		update article_type set is_del = #{id}
+		update article_type set is_del = 1
 		where 
 		id= #{id}
+	</update>
+	
+	<update id="delArticleById">
+		update article set is_del = 1
+		where 
+		article_id= #{article_id}
 	</update>
 	
 	<select id="addArticleType">

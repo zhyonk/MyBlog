@@ -63,5 +63,9 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		
 	}
+	@Override 
+	public void delArticleById(String article_id) {
+		articleDao.delArticleById(article_id);
+	}
 
 }

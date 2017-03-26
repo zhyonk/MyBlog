@@ -58,5 +58,10 @@ public interface ArticleDao {
 	 * @param id
 	 */
 	public void delArticleType(@Param("id")int id);
+	/**
+	 * 
+	 * @param article_id
+	 */
+	public void delArticleById(@Param("article_id")String article_id);
 
 }

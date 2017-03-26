@@ -17,11 +17,14 @@
 <script type="text/javascript" src="../js/bootstrap-editable.js"></script>
 <script type="text/javascript" src="../js/bootstrap-table-editable.js"></script>
 <script type="text/javascript" src="../js/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="../js/fileinput.min.js"></script>
 <script type="text/javascript" src="../js/sweet-alert.min.js"></script>
+<link rel="stylesheet" href="../css/fileinput.min.css">
 <link rel="stylesheet" href="../css/sweet-alert.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="../css/bootstrap-table.css">
 <link rel="stylesheet" href="../css/bootstrap-editable.css">
+
 </head>
 
 <body>
@@ -31,23 +34,76 @@
 			<legend>轮播信息</legend>
 		</fieldset>
 		<div id="toolbar" class="btn-group">
-			<button id="btn_add" type="button" class="btn btn-default">
-				<span class="glyphicon glyphicon-plus " aria-hidden="true"
-					data-method="offset" data-type="auto" onclick="fun();"></span>新增
+			<button id="btn_add" type="button" class="btn btn-default"
+				data-toggle="modal" data-target="#myModal">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			</button>
 			<button id="btn_delete" type="button" class="btn btn-default">
 				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			</button>
 		</div>
-		<table id="tb_departments"></table>
 		<table id="all_table">
 		</table>
 	</div>
 
-	<div id="edit">
-		
-		
-	</div>
+	<div id="edit"></div>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="z-index: 111111; width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">新增信息</h4>
+				</div>
+				<div class="modal-body">
+
+
+
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="type_name" class="col-sm-2 control-label">大标题</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" placeholder="请输入大标题"
+									id="type_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="type_name" class="col-sm-2 control-label">小标题</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" placeholder="请输入小标题"
+									id="type_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="type_name" class="col-sm-2 control-label">图片</label>
+							<div class="col-sm-10">
+								<input type="file"  class="file" placeholder="请选择图片"
+									id="imgupload" data-show-preview="false">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="type_name" class="col-sm-2 control-label">链接</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" placeholder="请输入链接"
+									id="type_name">
+							</div>
+							</div>
+					</form>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-primary" id="addCarousel">确定</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		</div>
+	
 	<script type="text/javascript">
 		var TableInit = function() {
 			var oTableInit = new Object();
@@ -58,6 +114,7 @@
 				url : '../getCarousel', // 请求后台的URL（*）
 				method : 'get', // 请求方式（*）
 				striped : false, // 是否显示行间隔色
+				toolbar : '#toolbar',
 				cache : false, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 				pagination : true, // 是否显示分页（*）
 				sortable : true, // 是否启用排序
@@ -69,7 +126,7 @@
 				pageList : [ 10, 25, 50, 100 ], // 可供选择的每页的行数（*）
 				search : false, // 是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 				strictSearch : true,
-				showColumns : false, // 是否显示所有的列
+				showColumns : true, // 是否显示所有的列
 				showRefresh : true, // 是否显示刷新按钮
 				minimumCountColumns : 2, // 最少允许的列数
 				clickToSelect : true, // 是否启用点击选中行
@@ -200,24 +257,33 @@
 		// 1.初始化Table
 		var oTable = new TableInit();
 		var ini = oTable.Init();
-		layui.use('layer', function() { //独立版的layer无需执行这一句
-			var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+		layui.use('layer',function() { //独立版的layer无需执行这一句
+				var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
 
-			$("#btn_add").on('click', function() {
-				layer.open({
-					title : '编辑',
-					content : 
-						'<div>'+
-						'<laber>大标题</laber><input class="layui-input"></br>'+
-						'<laber>小标题</laber><input class="layui-input"></br>'+
-						'<laber>图片</laber><input class="layui-input"></br>'+
-						'<laber>链接</laber><input class="layui-input"></br>'+
-						+'</div>'
-				});
-
-			})
 
 		});
+		/* 点击添加确定操作 */
+		$("#addCarousel").on('click',function(){
+			//先上传图片
+			initFileInput("imgupload","../articleImgUpdate")
+			
+			
+			
+			
+		})
+		
+		//初始化fileinput控件（第一次初始化）
+		function initFileInput(ctrlName, uploadUrl) {    
+		    var control = $('#' + ctrlName); 
+
+		    control.fileinput({
+		        language: 'zh', //设置语言
+		        uploadUrl: uploadUrl, //上传的地址
+		        allowedFileExtensions : ['jpg', 'png','gif','jpeg'],//接收的文件后缀
+		        browseClass: "btn btn-primary", //按钮样式             
+		        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>", 
+		    });
+		}
 	</script>
 </body>
 

@@ -106,6 +106,7 @@ public class IndexController {
 			e.printStackTrace();
 		}
 	}
+	
 	@RequestMapping(value = "/getCarousel", method = RequestMethod.GET)
 	public void getCarousel(ServletRequest request, ServletResponse response){
 		response.setCharacterEncoding("utf-8");
@@ -166,6 +167,19 @@ public class IndexController {
 			e.printStackTrace();
 		}
 	}
+
+	@RequestMapping(value = "/delArticleById", method = RequestMethod.POST)
+	public void delArticleById(ServletRequest request, ServletResponse response){
+		String article_id = request.getParameter("article_id");
+		response.setCharacterEncoding("utf-8");
+		
+		articleService.delArticleById(article_id);
+		try {
+			response.getWriter().println(JSONArray.toJSON(new Message("成功","success")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	 @RequestMapping(value = "/articleImgUpdate")  
 	    public void fileUpload(MultipartFile file,HttpServletRequest request,ServletResponse response) {  
@@ -173,8 +187,6 @@ public class IndexController {
 	        if (!file.isEmpty()) {  
 	            try {  
 	                // 文件保存路径  
-//	                String filePath = request.getSession().getServletContext().getRealPath("/") + "blog/images/"  
-//	                        + file.getOriginalFilename();  
 	                String filePath = "c:/MyBlog/images/"  
 	                        + file.getOriginalFilename();  
 	                File targetFile = new File(filePath);

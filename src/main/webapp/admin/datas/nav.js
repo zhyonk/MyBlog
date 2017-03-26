@@ -14,10 +14,6 @@ var navs = [{
 		"title": "分类目录",
 		"icon": "&#xe63c;",
 		"href": "admin/Article_type.html"
-	}, {
-		"title": "标签",
-		"icon": "&#xe609;",
-		"href": "admin/write_Article2.jsp"
 	}]
 }, {
 	"title": "用户",

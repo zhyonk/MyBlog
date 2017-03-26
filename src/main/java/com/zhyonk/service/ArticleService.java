@@ -57,5 +57,10 @@ public interface ArticleService {
 	 * @param parseArray
 	 */
 	public void delArticleType(List<ArticleType> parseArray);
+	/**
+	 * 根据id删除文章
+	 * @param article_id
+	 */
+	public void delArticleById(String article_id);
 	
 }

@@ -44,35 +44,33 @@
 			style="margin-top: 50px;">
 			<legend>副标题</legend>
 		</fieldset>
-		<input type="text" name="title" required lay-verify="required"
+		<input type="text" name="title2" required lay-verify="required"
 			placeholder="请输入标题" autocomplete="off" class="layui-input"
 			id="smalltitle">
-
-		
-		
-		<fieldset class="layui-elem-field layui-field-title"
+			
+				<fieldset class="layui-elem-field layui-field-title"
 			style="margin-top: 20px;">
-			<legend>上传图片</legend>
+			<legend>上传文章图片</legend>
 		</fieldset>
 
-
 		<div class="site-demo-upload">
-		  <img id="LAY_demo_upload" src="/pic/back.jpg">
+		  <img id="LAY_demo_upload">
 		  <div class="site-demo-upbar">
-		   <input type="file" name="file" class="layui-upload-file" lay-title="添加图片">
+		   <input type="file" name="file" class="layui-upload-file" lay-title="换个图片">
 		  </div>
 		</div>
 		<p style="margin-top: 20px;">注：目前看来必须传个图片，不了首页不好看</p>
 
+	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 	<script>
 		var filepath = "";
 		layui.use('upload', function() {
 			layui.upload({
-				url : '../articleImgUpdate',
+				url : '../articleImgUpdate' //上传接口
+				,
 				success : function(res) { 
 					swal("good job", "文件上传成功", "success");
-					filepath=res.status;
-					LAY_demo_upload.src ="<%=basePath1%>"+res.status;
+					filepath=res.status
 				}
 			});
 		});
@@ -83,14 +81,14 @@
 			<legend>文章内容</legend>
 		</fieldset>
 
-		<textarea class="layui-textarea" id="LAY_demo1" style="display: none">  
+		<textarea class="layui-textarea" id="LAY_demo1" style="display: none" name="textArea">  
 </textarea>
 
 
 		<form class="layui-form layui-form-pane" action="">
 			<div class="layui-form-item" pane>
 				<label class="layui-form-label">选择分类</label>
-				<div class="layui-input-block" id="type1" >
+				<div class="layui-input-block" id="type1">
 				<!-- 分类加在这 -->
 				</div>
 			</div>
@@ -106,10 +104,10 @@
 				url:"../getArticleType",
 				dataType:'json',
 				success:function(res){
-					text='<input type="radio" name="type" value="'+res[0].id+'" title="'+res[0].type_name+'"  lay-filter="radio" checked>';
+					text='<input type="radio" name="type" value="'+res[0].id+'" title="'+res[0].type_name+'" checked>';
 					if(res.length>1){
 						for (var i = 1; i < res.length; i++) {
-							text+='<input type="radio" name="type" value="'+res[i].id+'" title="'+res[i].type_name+'">'
+							text='<input type="radio" name="type" value="'+res[i].id+'" title="'+res[i].type_name+'">'
 						}
 					}
 					$("#type1").append(text);
@@ -118,13 +116,28 @@
 					swal("error", "获取文章类型失败", "error");
 				}
 			})
-
-			var a = $("input[type='radio']:checked").val();
+			
+			$.ajax({
+				url:"../content/id="+parent.getArticleId(),
+				dataType:'json',
+				success:function(res){
+					$("input[name='title']").val(res.title);
+					$("input[name='title2']").val(res.outline);
+					$("#LAY_demo1").val(res.content);
+					LAY_demo_upload.src = '<%=basePath1%>'+res.img_src
+					
+				},
+				error:function(res){
+					swal("error", "获取文章失败", "error");
+				}
+			})
+			
 			
 		});
+		
 	
 		layui.use('layedit', function() {
-		var layedit = layui.layedit, $ = layui.jquery;
+			var layedit = layui.layedit, $ = layui.jquery;
 
 
 			//构建一个默认的编辑器
@@ -161,14 +174,13 @@
 							text1 : text1,
 							text2 : text2,
 							date : date,
-							path :filepath,
-							
+							path :filepath
 						},
 						
 						type : 'POST',
 						dataType : 'json',
 						success : function(res) {
-							swal("good job", "发布成功", "success");
+							swal("good job", "保存成功", "success");
 						}
 					})
 				},
@@ -183,8 +195,13 @@
 			layedit.build('LAY_demo2', {
 				tool : [ 'face', 'link', 'unlink', '|', 'left', 'center',
 						'right' ],
-				height : 100
+				height : 500,
 			})
+			
+						
+
+			
+			
 		});
 		Date.prototype.format = function(format){ 
 			var o = { 

@@ -2,6 +2,9 @@
  * index.js By Beginner Emain:zheng_jinfan@126.com
  * HomePage:http://www.zhengjinfan.cn
  */
+
+var tabb;
+
 layui.config({base : 'js/'}).use([ 'element', 'layer', 'navbar', 'tab' ],
 				function() {
 					var element = layui.element(), $ = layui.jquery, layer = layui.layer, navbar = layui
@@ -10,6 +13,9 @@ layui.config({base : 'js/'}).use([ 'element', 'layer', 'navbar', 'tab' ],
 					tab = layui.tab({
 						elem : '.admin-nav-card' // 设置选项卡容器
 					});
+					tabb = tab;
+
+					
 					// iframe自适应
 					$(window).on('resize', function() {
 						var $content = $('.admin-nav-card .layui-tab-content');
@@ -100,6 +106,17 @@ layui.config({base : 'js/'}).use([ 'element', 'layer', 'navbar', 'tab' ],
 						$('body').removeClass('site-mobile');
 					});
 				});
+
+function getTab(){
+	return tabb;
+}
+var Article_id;
+function setArticeId(id){
+	Article_id = id;
+}
+function getArticleId(){
+	return Article_id;
+}
 
 function lock($, layer) {
 	// 自定页

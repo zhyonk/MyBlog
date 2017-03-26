@@ -59,8 +59,8 @@
 						<div class="form-group">
 							<label for="type_name" class="col-sm-2 control-label">名称</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control"
-									placeholder="请输入名称" id="type_name">
+								<input type="text" class="form-control" placeholder="请输入名称"
+									id="type_name">
 							</div>
 						</div>
 					</form>
@@ -75,7 +75,7 @@
 			</div>
 			<!-- /.modal-content -->
 		</div>
-
+		</div>
 		<!-- /.modal -->
 		<script type="text/javascript">
 			var TableInit = function() {
@@ -146,63 +146,65 @@
 						'<i class="glyphicon glyphicon-trash">删除</i>', '</a>' ]
 						.join('');
 			}
-			
+
 			//绑定确定添加
-			$("#addtype").on('click',function(){
+			$("#addtype").on('click', function() {
 				var name1 = $("#type_name").val();
 				$.ajax({
-					url:'../addArticleType',
-					data:{
+					url : '../addArticleType',
+					data : {
 						name : name1
 					},
-					type:'POST',
-					dataType:'json',
-					success:function(){
+					type : 'POST',
+					dataType : 'json',
+					success : function() {
 						swal({
-							  title: "good job",
-							  text: name1+"添加成功",
-							  timer: 2000,
-							  type:'success',
-							  showConfirmButton: false
-							});
+							title : "good job",
+							text : name1 + "添加成功",
+							timer : 2000,
+							type : 'success',
+							showConfirmButton : false
+						});
 						$('#myModal').modal('hide');
 						$('#all_table').bootstrapTable('refresh');
 					},
-					error:function(){
-						swal("抱歉", name1+"添加失败", "error");
+					error : function() {
+						swal("抱歉", name1 + "添加失败", "error");
 					}
 				})
 			})
-			
-			
-			$("#btn_delete").on('click',function(){
-				var selection = $('#all_table').bootstrapTable('getSelections');
-				var jsonStr = JSON.stringify(selection);
-				
-				$.ajax({
-					url:'../delArticleType',
-					data:{
-						data : jsonStr
-					},
-					type:'POST',
-					dataType:'json',
-					success:function(){
-						swal({
-							  title: "good job",
-							  text: "删除成功",
-							  timer: 2000,
-							  type:'success',
-							  showConfirmButton: false
-							});
-						$('#myModal').modal('hide');
-						$('#all_table').bootstrapTable('refresh');
-					},
-					error:function(){
-						swal("抱歉", "删除失败", "error");
-					}
-				}) 
-			})
-			
+
+			$("#btn_delete").on(
+					'click',
+					function() {
+						var selection = $('#all_table').bootstrapTable(
+								'getSelections');
+						var jsonStr = JSON.stringify(selection);
+
+						$.ajax({
+							url : '../delArticleType',
+							data : {
+								data : jsonStr
+							},
+							type : 'POST',
+							dataType : 'json',
+							success : function() {
+								swal({
+									title : "good job",
+									text : "删除成功",
+									timer : 2000,
+									type : 'success',
+									showConfirmButton : false
+								});
+								$('#myModal').modal('hide');
+								$('#all_table').bootstrapTable('refresh');
+							},
+							error : function() {
+								swal("抱歉", "删除失败", "error");
+							}
+						})
+					})
+
 			//表格  - 操作 - 事件
 			window.actionEvents = {
 				'click .mod' : function(e, value, row, index) {
